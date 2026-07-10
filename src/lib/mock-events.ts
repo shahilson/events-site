@@ -1,4 +1,5 @@
 import { EventItem } from "@/lib/types";
+import { placeholderImage } from "@/lib/images";
 
 // Curated sample events used whenever the Wix Headless connection isn't
 // configured (e.g. local preview without WIX_CLIENT_ID), so the site is
@@ -7,6 +8,7 @@ export const mockEvents: EventItem[] = [
   {
     id: "evt-1",
     slug: "sunrise-circle-yoga",
+    imageUrl: placeholderImage("sunrise-circle-yoga"),
     title: "Sunrise Circle Yoga & Journaling",
     category: "Wellness",
     tagline: "Start the week grounded, together.",
@@ -26,6 +28,7 @@ export const mockEvents: EventItem[] = [
   {
     id: "evt-2",
     slug: "founders-fireside-chat",
+    imageUrl: placeholderImage("founders-fireside-chat"),
     title: "Founders' Fireside: Building Without Burning Out",
     category: "Professional",
     tagline: "Real talk from women who've built and rebuilt.",
@@ -45,6 +48,7 @@ export const mockEvents: EventItem[] = [
   {
     id: "evt-3",
     slug: "trailblazers-hike",
+    imageUrl: placeholderImage("trailblazers-hike"),
     title: "Trailblazers Sunday Hike",
     category: "Outdoors",
     tagline: "Fresh air, good company, no pressure.",
@@ -64,6 +68,7 @@ export const mockEvents: EventItem[] = [
   {
     id: "evt-4",
     slug: "paint-and-pour-studio-night",
+    imageUrl: placeholderImage("paint-and-pour-studio-night"),
     title: "Paint & Pour Studio Night",
     category: "Creative",
     tagline: "No talent required, just good playlists.",
@@ -83,6 +88,7 @@ export const mockEvents: EventItem[] = [
   {
     id: "evt-5",
     slug: "book-club-untamed",
+    imageUrl: placeholderImage("book-club-untamed"),
     title: "Book Club: Chapters 1–9",
     category: "Social",
     tagline: "This month's pick, and the tea that comes with it.",
@@ -102,6 +108,7 @@ export const mockEvents: EventItem[] = [
   {
     id: "evt-6",
     slug: "virtual-negotiation-workshop",
+    imageUrl: placeholderImage("virtual-negotiation-workshop"),
     title: "Ask With Confidence: A Negotiation Workshop",
     category: "Professional",
     tagline: "Practice the ask before you need it.",
@@ -121,6 +128,7 @@ export const mockEvents: EventItem[] = [
   {
     id: "evt-7",
     slug: "new-in-town-mixer",
+    imageUrl: placeholderImage("new-in-town-mixer"),
     title: "New in Town Mixer",
     category: "Social",
     tagline: "For anyone who just moved and misses their people.",
@@ -140,6 +148,7 @@ export const mockEvents: EventItem[] = [
   {
     id: "evt-8",
     slug: "morning-run-club",
+    imageUrl: placeholderImage("morning-run-club"),
     title: "Morning Run Club: 5K Fun Run",
     category: "Outdoors",
     tagline: "All paces welcome, coffee guaranteed.",

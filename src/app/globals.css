@@ -1,44 +1,40 @@
 @import "tailwindcss";
 
 :root {
-  --background: #fbf6f1;
-  --foreground: #2b2320;
+  --background: #f5f1e9;
+  --foreground: #1c1815;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
 
-  --color-brand-cream: #fbf6f1;
-  --color-brand-ivory: #fffaf6;
-  --color-brand-blush-50: #fdf3f2;
-  --color-brand-blush-100: #f8e2e0;
-  --color-brand-blush-200: #f2cdc9;
-  --color-brand-rose-300: #e9aba8;
-  --color-brand-rose-400: #dd8c90;
-  --color-brand-rose-500: #cc6d78;
-  --color-brand-plum-500: #8a3a58;
-  --color-brand-plum-600: #6e2a46;
-  --color-brand-plum-700: #55203a;
-  --color-brand-plum-900: #341226;
-  --color-brand-ink: #2b2320;
-  --color-brand-ink-soft: #5c5049;
-  --color-brand-gold: #c9a15a;
-  --color-brand-gold-soft: #e6d1a4;
+  --color-brand-paper: #f5f1e9;
+  --color-brand-ivory: #fffdf9;
+  --color-brand-line: #e2dccb;
+  --color-brand-line-strong: #cfc7ad;
+  --color-brand-ink: #1c1815;
+  --color-brand-ink-soft: #6b655c;
+  --color-brand-clay: #a94a2e;
+  --color-brand-clay-dark: #7f3720;
+  --color-brand-clay-soft: #ecdccd;
+  --color-brand-olive: #6a6b45;
+  --color-brand-olive-soft: #e3e2cd;
+  --color-brand-sand: #d8cba9;
 
   --font-serif: var(--font-playfair);
   --font-sans: var(--font-inter);
 }
 
 body {
-  background: var(--color-brand-cream);
+  background: var(--color-brand-paper);
   color: var(--color-brand-ink);
   font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
 }
 
 ::selection {
-  background: var(--color-brand-rose-300);
-  color: var(--color-brand-plum-900);
+  background: var(--color-brand-sand);
+  color: var(--color-brand-ink);
 }
 
 .font-serif-display {

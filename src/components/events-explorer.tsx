@@ -31,17 +31,17 @@ export default function EventsExplorer({ events }: { events: EventItem[] }) {
 
   return (
     <div>
-      <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-        <div className="flex flex-wrap gap-2">
+      <div className="flex flex-col gap-5 border-b border-brand-line pb-6 sm:flex-row sm:items-center sm:justify-between">
+        <div className="flex flex-wrap gap-x-6 gap-y-2">
           {CATEGORIES.map((c) => (
             <button
               key={c}
               type="button"
               onClick={() => setCategory(c)}
-              className={`rounded-full px-4 py-2 text-sm font-medium transition-colors ${
+              className={`border-b-2 pb-1 text-sm font-medium uppercase tracking-wide transition-colors ${
                 category === c
-                  ? "bg-brand-plum-600 text-brand-ivory"
-                  : "bg-brand-ivory text-brand-ink-soft ring-1 ring-inset ring-brand-blush-200 hover:bg-brand-blush-100"
+                  ? "border-brand-clay text-brand-ink"
+                  : "border-transparent text-brand-ink-soft hover:text-brand-ink"
               }`}
             >
               {c}
@@ -50,13 +50,13 @@ export default function EventsExplorer({ events }: { events: EventItem[] }) {
         </div>
 
         <div className="relative w-full sm:w-64">
-          <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-brand-ink-soft" />
+          <Search className="pointer-events-none absolute left-0 top-1/2 h-4 w-4 -translate-y-1/2 text-brand-ink-soft" />
           <input
             type="search"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             placeholder="Search events or locations"
-            className="w-full rounded-full border border-brand-blush-200 bg-brand-ivory py-2.5 pl-9 pr-4 text-sm text-brand-ink placeholder:text-brand-ink-soft/70 focus:outline-none focus:ring-2 focus:ring-brand-rose-400"
+            className="w-full border-b border-brand-line bg-transparent py-2.5 pl-6 pr-2 text-sm text-brand-ink placeholder:text-brand-ink-soft/70 focus:outline-none focus:border-brand-ink"
           />
         </div>
       </div>
@@ -66,7 +66,7 @@ export default function EventsExplorer({ events }: { events: EventItem[] }) {
           No events match just yet — try a different category or search term.
         </p>
       ) : (
-        <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-10 grid gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
           {filtered.map((event) => (
             <EventCard key={event.id} event={event} />
           ))}

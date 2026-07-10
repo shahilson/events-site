@@ -12,7 +12,7 @@ export default async function EventsPage() {
   const events = await getAllEvents();
 
   return (
-    <div className="mx-auto max-w-6xl px-6 py-16">
+    <div className="mx-auto max-w-6xl px-6 py-16 sm:px-10">
       <SectionHeading
         eyebrow="What's coming up"
         title="Upcoming events"

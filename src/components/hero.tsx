@@ -1,68 +1,73 @@
+import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, Sparkles } from "lucide-react";
+import { ArrowRight } from "lucide-react";
+import { placeholderImage } from "@/lib/images";
 
 export default function Hero() {
   return (
-    <section className="relative overflow-hidden">
-      <div
-        aria-hidden
-        className="absolute -right-24 -top-24 h-96 w-96 rounded-full bg-brand-blush-100 blur-3xl"
-      />
-      <div
-        aria-hidden
-        className="absolute -left-32 top-40 h-80 w-80 rounded-full bg-brand-gold-soft/40 blur-3xl"
-      />
+    <section className="relative">
+      <div className="relative h-[70vh] min-h-[520px] w-full overflow-hidden">
+        <Image
+          src={placeholderImage("kindred-circle-hero", 1800, 1400)}
+          alt="Women gathered together at a Kindred Circle event"
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-brand-ink/80 via-brand-ink/25 to-brand-ink/10" />
 
-      <div className="relative mx-auto flex max-w-6xl flex-col items-center px-6 pb-20 pt-16 text-center sm:pt-24">
-        <span className="inline-flex items-center gap-2 rounded-full bg-brand-blush-100 px-4 py-1.5 text-xs font-medium text-brand-plum-700">
-          <Sparkles className="h-3.5 w-3.5" />
-          Real women. Real rooms. Real connection.
-        </span>
+        <div className="relative flex h-full flex-col justify-end px-6 pb-14 sm:px-10 sm:pb-20">
+          <div className="mx-auto w-full max-w-6xl">
+            <p className="text-xs font-medium uppercase tracking-[0.3em] text-brand-sand">
+              Est. for women who show up
+            </p>
+            <h1 className="mt-5 max-w-2xl text-balance font-serif-display text-4xl font-semibold leading-[1.05] text-brand-ivory sm:text-6xl">
+              Find your circle.
+              <br />
+              Show up as you are.
+            </h1>
+            <p className="mt-6 max-w-md text-balance text-base leading-relaxed text-brand-ivory/80">
+              Meetups and social events for like-minded women — wellness
+              mornings, hikes, founder talks, and studio nights.
+            </p>
 
-        <h1 className="mt-6 max-w-3xl text-balance font-serif-display text-4xl font-semibold leading-tight text-brand-plum-900 sm:text-6xl">
-          Find your circle. Show up as you are.
-        </h1>
-
-        <p className="mt-6 max-w-xl text-balance text-lg leading-relaxed text-brand-ink-soft">
-          Kindred Circle is a community of meetups and social events for
-          like-minded women — wellness mornings, hikes, founder talks, studio
-          nights, and everything in between.
-        </p>
-
-        <div className="mt-9 flex flex-col gap-3 sm:flex-row">
-          <Link
-            href="/events"
-            className="inline-flex items-center justify-center gap-2 rounded-full bg-brand-plum-600 px-7 py-3.5 text-sm font-semibold text-brand-ivory transition-colors hover:bg-brand-plum-700"
-          >
-            Browse Upcoming Events
-            <ArrowRight className="h-4 w-4" />
-          </Link>
-          <Link
-            href="/about"
-            className="inline-flex items-center justify-center gap-2 rounded-full border border-brand-plum-600/30 px-7 py-3.5 text-sm font-semibold text-brand-plum-700 transition-colors hover:bg-brand-blush-100"
-          >
-            Meet the Community
-          </Link>
+            <div className="mt-9 flex flex-col gap-3 sm:flex-row">
+              <Link
+                href="/events"
+                className="inline-flex items-center justify-center gap-2 bg-brand-ivory px-7 py-3.5 text-sm font-semibold tracking-wide text-brand-ink transition-colors hover:bg-brand-sand"
+              >
+                Browse Upcoming Events
+                <ArrowRight className="h-4 w-4" />
+              </Link>
+              <Link
+                href="/about"
+                className="inline-flex items-center justify-center gap-2 border border-brand-ivory/50 px-7 py-3.5 text-sm font-semibold tracking-wide text-brand-ivory transition-colors hover:bg-brand-ivory/10"
+              >
+                Meet the Community
+              </Link>
+            </div>
+          </div>
         </div>
-
-        <dl className="mt-16 grid w-full max-w-xl grid-cols-3 gap-6 border-t border-brand-blush-200/70 pt-8">
-          <div>
-            <dt className="sr-only">Members</dt>
-            <dd className="font-serif-display text-2xl font-semibold text-brand-plum-700">2,400+</dd>
-            <p className="mt-1 text-xs uppercase tracking-wide text-brand-ink-soft">Members</p>
-          </div>
-          <div>
-            <dt className="sr-only">Events hosted</dt>
-            <dd className="font-serif-display text-2xl font-semibold text-brand-plum-700">180+</dd>
-            <p className="mt-1 text-xs uppercase tracking-wide text-brand-ink-soft">Events hosted</p>
-          </div>
-          <div>
-            <dt className="sr-only">Cities</dt>
-            <dd className="font-serif-display text-2xl font-semibold text-brand-plum-700">12</dd>
-            <p className="mt-1 text-xs uppercase tracking-wide text-brand-ink-soft">Cities</p>
-          </div>
-        </dl>
       </div>
+
+      <dl className="mx-auto grid max-w-6xl grid-cols-3 gap-6 border-b border-brand-line px-6 py-8 sm:px-10">
+        <div>
+          <dt className="sr-only">Members</dt>
+          <dd className="font-serif-display text-2xl font-semibold text-brand-ink sm:text-3xl">2,400+</dd>
+          <p className="mt-1 text-xs uppercase tracking-[0.15em] text-brand-ink-soft">Members</p>
+        </div>
+        <div>
+          <dt className="sr-only">Events hosted</dt>
+          <dd className="font-serif-display text-2xl font-semibold text-brand-ink sm:text-3xl">180+</dd>
+          <p className="mt-1 text-xs uppercase tracking-[0.15em] text-brand-ink-soft">Events hosted</p>
+        </div>
+        <div>
+          <dt className="sr-only">Cities</dt>
+          <dd className="font-serif-display text-2xl font-semibold text-brand-ink sm:text-3xl">12</dd>
+          <p className="mt-1 text-xs uppercase tracking-[0.15em] text-brand-ink-soft">Cities</p>
+        </div>
+      </dl>
     </section>
   );
 }

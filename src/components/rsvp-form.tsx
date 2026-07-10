@@ -47,9 +47,9 @@ export default function RsvpForm({
 
   if (status === "success") {
     return (
-      <div className="flex flex-col items-center gap-3 rounded-2xl bg-brand-blush-100 p-8 text-center">
-        <CheckCircle2 className="h-10 w-10 text-brand-plum-600" strokeWidth={1.5} />
-        <h3 className="font-serif-display text-xl font-semibold text-brand-plum-900">
+      <div className="flex flex-col items-center gap-3 bg-brand-clay-soft p-8 text-center">
+        <CheckCircle2 className="h-10 w-10 text-brand-clay-dark" strokeWidth={1.5} />
+        <h3 className="font-serif-display text-xl font-semibold text-brand-ink">
           You&apos;re RSVP&apos;d!
         </h3>
         <p className="text-sm text-brand-ink-soft">{message}</p>
@@ -69,7 +69,7 @@ export default function RsvpForm({
             required
             value={form.firstName}
             onChange={(e) => setForm({ ...form, firstName: e.target.value })}
-            className="mt-1 w-full rounded-xl border border-brand-blush-200 bg-brand-ivory px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-rose-400"
+            className="mt-1 w-full border border-brand-line bg-brand-ivory px-4 py-2.5 text-sm focus:outline-none focus:border-brand-ink"
           />
         </div>
         <div>
@@ -81,7 +81,7 @@ export default function RsvpForm({
             required
             value={form.lastName}
             onChange={(e) => setForm({ ...form, lastName: e.target.value })}
-            className="mt-1 w-full rounded-xl border border-brand-blush-200 bg-brand-ivory px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-rose-400"
+            className="mt-1 w-full border border-brand-line bg-brand-ivory px-4 py-2.5 text-sm focus:outline-none focus:border-brand-ink"
           />
         </div>
       </div>
@@ -96,7 +96,7 @@ export default function RsvpForm({
           required
           value={form.email}
           onChange={(e) => setForm({ ...form, email: e.target.value })}
-          className="mt-1 w-full rounded-xl border border-brand-blush-200 bg-brand-ivory px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-rose-400"
+          className="mt-1 w-full border border-brand-line bg-brand-ivory px-4 py-2.5 text-sm focus:outline-none focus:border-brand-ink"
         />
       </div>
 
@@ -108,7 +108,7 @@ export default function RsvpForm({
           id="guestCount"
           value={form.guestCount}
           onChange={(e) => setForm({ ...form, guestCount: Number(e.target.value) })}
-          className="mt-1 w-full rounded-xl border border-brand-blush-200 bg-brand-ivory px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-rose-400"
+          className="mt-1 w-full border border-brand-line bg-brand-ivory px-4 py-2.5 text-sm focus:outline-none focus:border-brand-ink"
         >
           {[1, 2, 3, 4].map((n) => (
             <option key={n} value={n}>
@@ -127,12 +127,12 @@ export default function RsvpForm({
           rows={3}
           value={form.notes}
           onChange={(e) => setForm({ ...form, notes: e.target.value })}
-          className="mt-1 w-full rounded-xl border border-brand-blush-200 bg-brand-ivory px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-rose-400"
+          className="mt-1 w-full border border-brand-line bg-brand-ivory px-4 py-2.5 text-sm focus:outline-none focus:border-brand-ink"
         />
       </div>
 
       {status === "error" && (
-        <p className="text-sm text-brand-plum-700" role="alert">
+        <p className="text-sm text-brand-clay-dark" role="alert">
           {message}
         </p>
       )}
@@ -140,7 +140,7 @@ export default function RsvpForm({
       <button
         type="submit"
         disabled={status === "loading"}
-        className="flex w-full items-center justify-center gap-2 rounded-full bg-brand-plum-600 px-6 py-3.5 text-sm font-semibold text-brand-ivory transition-colors hover:bg-brand-plum-700 disabled:cursor-not-allowed disabled:opacity-70"
+        className="flex w-full items-center justify-center gap-2 bg-brand-ink px-6 py-3.5 text-sm font-semibold uppercase tracking-wide text-brand-ivory transition-colors hover:bg-brand-clay disabled:cursor-not-allowed disabled:opacity-70"
       >
         {status === "loading" ? (
           <>

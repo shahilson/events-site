@@ -13,22 +13,22 @@ export const ACCENT_STYLES: Record<
   { bg: string; text: string; ring: string; solidBg: string }
 > = {
   rose: {
-    bg: "bg-brand-blush-100",
-    text: "text-brand-plum-700",
-    ring: "ring-brand-rose-300",
-    solidBg: "bg-brand-rose-400",
+    bg: "bg-brand-clay-soft",
+    text: "text-brand-clay-dark",
+    ring: "ring-brand-clay/40",
+    solidBg: "bg-brand-clay",
   },
   plum: {
-    bg: "bg-brand-plum-600/10",
-    text: "text-brand-plum-700",
-    ring: "ring-brand-plum-500/40",
-    solidBg: "bg-brand-plum-600",
+    bg: "bg-brand-ink/[0.06]",
+    text: "text-brand-ink",
+    ring: "ring-brand-ink/30",
+    solidBg: "bg-brand-ink",
   },
   gold: {
-    bg: "bg-brand-gold-soft/40",
-    text: "text-brand-plum-700",
-    ring: "ring-brand-gold/50",
-    solidBg: "bg-brand-gold",
+    bg: "bg-brand-olive-soft",
+    text: "text-brand-olive",
+    ring: "ring-brand-olive/40",
+    solidBg: "bg-brand-olive",
   },
 };
 

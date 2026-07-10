@@ -1,18 +1,15 @@
 import Link from "next/link";
-import { Sparkle, Camera, Mail } from "lucide-react";
+import { Camera, Mail } from "lucide-react";
 
 export default function Footer() {
   return (
-    <footer className="border-t border-brand-blush-200/70 bg-brand-ivory">
-      <div className="mx-auto max-w-6xl px-6 py-14">
+    <footer className="border-t border-brand-line bg-brand-ivory">
+      <div className="mx-auto max-w-6xl px-6 py-14 sm:px-10">
         <div className="grid gap-10 md:grid-cols-3">
           <div>
-            <div className="flex items-center gap-2">
-              <Sparkle className="h-5 w-5 text-brand-plum-600" strokeWidth={1.75} />
-              <span className="font-serif-display text-lg font-semibold text-brand-plum-700">
-                Kindred Circle
-              </span>
-            </div>
+            <span className="font-serif-display text-lg font-semibold text-brand-ink">
+              Kindred Circle
+            </span>
             <p className="mt-3 max-w-xs text-sm leading-relaxed text-brand-ink-soft">
               A community of meetups and social events for like-minded women —
               built on the belief that showing up for each other changes
@@ -21,20 +18,20 @@ export default function Footer() {
           </div>
 
           <div>
-            <h3 className="text-sm font-semibold text-brand-plum-700">Explore</h3>
+            <h3 className="text-xs font-semibold uppercase tracking-[0.15em] text-brand-ink">Explore</h3>
             <ul className="mt-3 space-y-2 text-sm text-brand-ink-soft">
               <li>
-                <Link href="/events" className="hover:text-brand-plum-700">
+                <Link href="/events" className="hover:text-brand-clay">
                   Upcoming Events
                 </Link>
               </li>
               <li>
-                <Link href="/about" className="hover:text-brand-plum-700">
+                <Link href="/about" className="hover:text-brand-clay">
                   Our Community
                 </Link>
               </li>
               <li>
-                <Link href="/events" className="hover:text-brand-plum-700">
+                <Link href="/events" className="hover:text-brand-clay">
                   Host with Us
                 </Link>
               </li>
@@ -42,23 +39,23 @@ export default function Footer() {
           </div>
 
           <div>
-            <h3 className="text-sm font-semibold text-brand-plum-700">Stay in the loop</h3>
+            <h3 className="text-xs font-semibold uppercase tracking-[0.15em] text-brand-ink">Stay in the loop</h3>
             <p className="mt-3 text-sm text-brand-ink-soft">
               New events land in your inbox every week — no spam, just circles
               worth joining.
             </p>
-            <div className="mt-4 flex items-center gap-3 text-brand-plum-700">
+            <div className="mt-4 flex items-center gap-3 text-brand-ink">
               <a
                 href="mailto:hello@kindredcircle.co"
                 aria-label="Email Kindred Circle"
-                className="rounded-full border border-brand-plum-600/30 p-2 transition-colors hover:bg-brand-blush-100"
+                className="border border-brand-line p-2 transition-colors hover:border-brand-ink"
               >
                 <Mail className="h-4 w-4" />
               </a>
               <a
                 href="#"
                 aria-label="Kindred Circle on Instagram"
-                className="rounded-full border border-brand-plum-600/30 p-2 transition-colors hover:bg-brand-blush-100"
+                className="border border-brand-line p-2 transition-colors hover:border-brand-ink"
               >
                 <Camera className="h-4 w-4" />
               </a>
@@ -66,7 +63,7 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="mt-12 flex flex-col items-center justify-between gap-3 border-t border-brand-blush-200/70 pt-6 text-xs text-brand-ink-soft/80 sm:flex-row">
+        <div className="mt-12 flex flex-col items-center justify-between gap-3 border-t border-brand-line pt-6 text-xs text-brand-ink-soft sm:flex-row">
           <p>© {new Date().getFullYear()} Kindred Circle. Made with care, by and for women.</p>
           <p>Powered by Wix Headless</p>
         </div>

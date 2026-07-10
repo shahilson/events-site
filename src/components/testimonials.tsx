@@ -1,4 +1,6 @@
+import Image from "next/image";
 import SectionHeading from "@/components/section-heading";
+import { placeholderImage } from "@/lib/images";
 
 const TESTIMONIALS = [
   {
@@ -23,22 +25,30 @@ const TESTIMONIALS = [
 
 export default function Testimonials() {
   return (
-    <section className="mx-auto max-w-6xl px-6 py-20">
-      <SectionHeading eyebrow="In their words" title="What our members say" align="center" />
+    <section className="mx-auto max-w-6xl px-6 py-20 sm:px-10">
+      <SectionHeading eyebrow="In their words" title="What our members say" />
 
-      <div className="mt-12 grid gap-6 md:grid-cols-3">
+      <div className="mt-12 grid gap-10 border-t border-brand-line pt-10 md:grid-cols-3 md:gap-8">
         {TESTIMONIALS.map((t) => (
-          <figure
-            key={t.name}
-            className="flex h-full flex-col justify-between rounded-3xl border border-brand-blush-200/70 bg-brand-ivory p-7"
-          >
-            <blockquote className="font-serif-display text-lg leading-relaxed text-brand-plum-900">
+          <figure key={t.name} className="flex h-full flex-col">
+            <blockquote className="font-serif-display text-lg leading-relaxed text-brand-ink">
               &ldquo;{t.quote}&rdquo;
             </blockquote>
-            <figcaption className="mt-6 text-sm text-brand-ink-soft">
-              <span className="font-semibold text-brand-plum-700">{t.name}</span>
-              {" — "}
-              {t.context}
+            <figcaption className="mt-6 flex items-center gap-3">
+              <div className="relative h-10 w-10 shrink-0 overflow-hidden bg-brand-line">
+                <Image
+                  src={placeholderImage(t.name, 80, 80)}
+                  alt=""
+                  fill
+                  sizes="40px"
+                  className="object-cover grayscale-[15%]"
+                />
+              </div>
+              <p className="text-sm text-brand-ink-soft">
+                <span className="font-semibold text-brand-ink">{t.name}</span>
+                {" — "}
+                {t.context}
+              </p>
             </figcaption>
           </figure>
         ))}

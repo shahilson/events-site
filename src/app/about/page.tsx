@@ -36,7 +36,7 @@ export default function AboutPage() {
 
         <Link
           href="/events"
-          className="mt-8 inline-flex items-center gap-2 rounded-full bg-brand-plum-600 px-7 py-3.5 text-sm font-semibold text-brand-ivory transition-colors hover:bg-brand-plum-700"
+          className="mt-8 inline-flex items-center gap-2 bg-brand-ink px-7 py-3.5 text-sm font-semibold uppercase tracking-wide text-brand-ivory transition-colors hover:bg-brand-clay"
         >
           See what&apos;s coming up
           <ArrowRight className="h-4 w-4" />

@@ -2,6 +2,7 @@ import type { wixEventsV2 } from "@wix/events";
 import { isWixConfigured, wixClient } from "@/lib/wix/client";
 import { mockEvents, getMockEventBySlug } from "@/lib/mock-events";
 import { EventCategory, EventItem, RsvpPayload, RsvpResult } from "@/lib/types";
+import { placeholderImage } from "@/lib/images";
 
 type WixEvent = wixEventsV2.Event;
 
@@ -18,6 +19,13 @@ function formatAddress(address: wixEventsV2.Address | undefined): string {
   return [address.addressLine1, address.city, address.subdivision, address.postalCode]
     .filter(Boolean)
     .join(", ");
+}
+
+// `mainImage` is only a ready-to-use URL when the DETAILS fieldset resolved a
+// real image set in the Wix dashboard; fall back to a placeholder otherwise.
+function resolveImage(mainImage: string | undefined, seed: string): string {
+  if (mainImage && /^https?:\/\//.test(mainImage)) return mainImage;
+  return placeholderImage(seed);
 }
 
 // Wix Events doesn't have a built-in "category" concept the way this design
@@ -40,6 +48,7 @@ function mapWixEventToEventItem(event: WixEvent): EventItem {
     locationName: event.location?.name ?? (event.location?.type === "ONLINE" ? "Online" : "TBD"),
     address: formatAddress(event.location?.address),
     isOnline: event.location?.type === "ONLINE",
+    imageUrl: resolveImage(event.mainImage, event.slug ?? event._id ?? event.title ?? "event"),
     capacity: undefined,
     spotsLeft: isWaitlistOnly ? 0 : undefined,
     featured: false,

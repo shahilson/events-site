@@ -17,6 +17,7 @@ export interface EventItem {
   locationName: string;
   address: string;
   isOnline: boolean;
+  imageUrl: string;
   capacity?: number;
   spotsLeft?: number;
   featured: boolean;
