@@ -48,7 +48,7 @@ export default async function EventDetailPage({
           fill
           priority
           sizes="100vw"
-          className="object-cover grayscale-[15%]"
+          className="object-cover"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-brand-ink/70 via-transparent to-transparent" />
         <Link

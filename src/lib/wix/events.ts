@@ -27,10 +27,12 @@ function formatAddress(address: wixEventsV2.Address | undefined): string {
     .join(", ");
 }
 
-// `mainImage` is only a ready-to-use URL when the DETAILS fieldset resolved a
-// real image set in the Wix dashboard; fall back to a placeholder otherwise.
-function resolveImage(mainImage: string | undefined, seed: string): string {
-  if (mainImage && /^https?:\/\//.test(mainImage)) return mainImage;
+// `mainImage` is documented as a plain URL string, but the raw Events V3 API
+// (and observed SDK responses) return an Image object `{ id, url, ... }`
+// instead — handle both so a real photo set on the event is never missed.
+function resolveImage(mainImage: unknown, seed: string): string {
+  const url = typeof mainImage === "string" ? mainImage : (mainImage as { url?: string } | undefined)?.url;
+  if (url && /^https?:\/\//.test(url)) return url;
   return placeholderImage(seed);
 }
 

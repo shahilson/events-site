@@ -41,7 +41,7 @@ export default function Testimonials() {
                   alt=""
                   fill
                   sizes="40px"
-                  className="object-cover grayscale-[15%]"
+                  className="object-cover"
                 />
               </div>
               <p className="text-sm text-brand-ink-soft">

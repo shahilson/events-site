@@ -1,14 +1,14 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
-import { placeholderImage } from "@/lib/images";
+import { COMMUNITY_PHOTOS } from "@/lib/images";
 
 export default function Hero() {
   return (
     <section className="relative">
       <div className="relative h-[70vh] min-h-[520px] w-full overflow-hidden">
         <Image
-          src={placeholderImage("kindred-circle-hero", 1800, 1400)}
+          src={COMMUNITY_PHOTOS.hero}
           alt="Women gathered together at a Kindred Circle event"
           fill
           priority
