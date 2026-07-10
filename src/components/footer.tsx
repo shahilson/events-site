@@ -7,7 +7,7 @@ export default function Footer() {
       <div className="mx-auto max-w-6xl px-6 py-14 sm:px-10">
         <div className="grid gap-10 md:grid-cols-3">
           <div>
-            <span className="font-serif-display text-lg font-semibold text-brand-ink">
+            <span className="text-lg font-extrabold uppercase tracking-tight text-brand-ink">
               Kindred Circle
             </span>
             <p className="mt-3 max-w-xs text-sm leading-relaxed text-brand-ink-soft">
@@ -21,17 +21,17 @@ export default function Footer() {
             <h3 className="text-xs font-semibold uppercase tracking-[0.15em] text-brand-ink">Explore</h3>
             <ul className="mt-3 space-y-2 text-sm text-brand-ink-soft">
               <li>
-                <Link href="/events" className="hover:text-brand-clay">
+                <Link href="/events" className="hover:text-brand-rust">
                   Upcoming Events
                 </Link>
               </li>
               <li>
-                <Link href="/about" className="hover:text-brand-clay">
+                <Link href="/about" className="hover:text-brand-rust">
                   Our Community
                 </Link>
               </li>
               <li>
-                <Link href="/events" className="hover:text-brand-clay">
+                <Link href="/events" className="hover:text-brand-rust">
                   Host with Us
                 </Link>
               </li>

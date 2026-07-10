@@ -54,9 +54,9 @@ export default function BuyTicketsForm({
 
   if (status === "success") {
     return (
-      <div className="flex flex-col items-center gap-3 bg-brand-clay-soft p-8 text-center">
-        <CheckCircle2 className="h-10 w-10 text-brand-clay-dark" strokeWidth={1.5} />
-        <h3 className="font-serif-display text-xl font-semibold text-brand-ink">
+      <div className="flex flex-col items-center gap-3 bg-brand-rust-soft p-8 text-center">
+        <CheckCircle2 className="h-10 w-10 text-brand-rust" strokeWidth={1.5} />
+        <h3 className="text-xl font-semibold text-brand-ink">
           You&apos;re booked!
         </h3>
         <p className="text-sm text-brand-ink-soft">{message}</p>
@@ -68,7 +68,7 @@ export default function BuyTicketsForm({
     <form onSubmit={handleSubmit} className="space-y-4">
       <div className="flex items-baseline justify-between border-b border-brand-line pb-4">
         <span className="text-xs uppercase tracking-wide text-brand-ink-soft">General Admission</span>
-        <span className="font-serif-display text-2xl font-semibold text-brand-ink">
+        <span className="text-2xl font-semibold text-brand-ink">
           {formatPrice(ticketPrice, ticketCurrency)}
         </span>
       </div>
@@ -92,7 +92,7 @@ export default function BuyTicketsForm({
       </div>
 
       {status === "error" && (
-        <p className="text-sm text-brand-clay-dark" role="alert">
+        <p className="text-sm text-brand-rust" role="alert">
           {message}
         </p>
       )}
@@ -100,7 +100,7 @@ export default function BuyTicketsForm({
       <button
         type="submit"
         disabled={status === "loading"}
-        className="flex w-full items-center justify-center gap-2 bg-brand-ink px-6 py-3.5 text-sm font-semibold uppercase tracking-wide text-brand-ivory transition-colors hover:bg-brand-clay disabled:cursor-not-allowed disabled:opacity-70"
+        className="flex w-full items-center justify-center gap-2 bg-brand-ink px-6 py-3.5 text-sm font-bold uppercase tracking-wide text-brand-ivory transition-colors hover:bg-brand-periwinkle disabled:cursor-not-allowed disabled:opacity-70"
       >
         {status === "loading" ? (
           <>

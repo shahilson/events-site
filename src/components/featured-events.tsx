@@ -21,7 +21,7 @@ export default function FeaturedEvents({ events }: { events: EventItem[] }) {
         />
         <Link
           href="/events"
-          className="inline-flex items-center gap-1.5 text-sm font-semibold text-brand-ink transition-colors hover:text-brand-clay"
+          className="inline-flex items-center gap-1.5 text-sm font-semibold text-brand-ink transition-colors hover:text-brand-rust"
         >
           View all events
           <ArrowRight className="h-4 w-4" />
@@ -43,10 +43,10 @@ export default function FeaturedEvents({ events }: { events: EventItem[] }) {
           />
         </div>
         <div className="flex flex-col justify-center">
-          <p className="text-xs font-medium uppercase tracking-[0.2em] text-brand-clay">
+          <p className="text-xs font-medium uppercase tracking-[0.2em] text-brand-rust">
             {lead.category}
           </p>
-          <h3 className="mt-3 text-balance font-serif-display text-3xl font-semibold leading-tight text-brand-ink transition-colors group-hover:text-brand-clay sm:text-4xl">
+          <h3 className="mt-3 text-balance font-extralight leading-[1.02] tracking-tight text-brand-ink transition-colors group-hover:text-brand-rust text-4xl sm:text-5xl">
             {lead.title}
           </h3>
           <p className="mt-4 max-w-md leading-relaxed text-brand-ink-soft">{lead.tagline}</p>

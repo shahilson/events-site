@@ -34,7 +34,7 @@ export default function EventCard({ event }: { event: EventItem }) {
           {formatEventDate(event.startDate)} &middot; {formatEventTime(event.startDate)}
         </div>
 
-        <h3 className="font-serif-display text-xl font-semibold leading-snug text-brand-ink transition-colors group-hover:text-brand-clay">
+        <h3 className="text-xl font-semibold leading-snug text-brand-ink transition-colors group-hover:text-brand-rust">
           {event.title}
         </h3>
 

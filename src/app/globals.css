@@ -1,28 +1,30 @@
 @import "tailwindcss";
 
 :root {
-  --background: #f5f1e9;
-  --foreground: #1c1815;
+  --background: #f2ede1;
+  --foreground: #17171a;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
 
-  --color-brand-paper: #f5f1e9;
-  --color-brand-ivory: #fffdf9;
-  --color-brand-line: #e2dccb;
-  --color-brand-line-strong: #cfc7ad;
-  --color-brand-ink: #1c1815;
-  --color-brand-ink-soft: #6b655c;
-  --color-brand-clay: #a94a2e;
-  --color-brand-clay-dark: #7f3720;
-  --color-brand-clay-soft: #ecdccd;
-  --color-brand-olive: #6a6b45;
-  --color-brand-olive-soft: #e3e2cd;
-  --color-brand-sand: #d8cba9;
+  --color-brand-paper: #f2ede1;
+  --color-brand-ivory: #fbf9f2;
+  --color-brand-line: #ddd6c2;
+  --color-brand-ink: #17171a;
+  --color-brand-ink-soft: #6f6c62;
 
-  --font-serif: var(--font-playfair);
+  --color-brand-periwinkle: #5468d4;
+  --color-brand-periwinkle-soft: #dbe0f7;
+  --color-brand-butter: #f2e35c;
+  --color-brand-butter-soft: #faf4c9;
+  --color-brand-moss: #63653f;
+  --color-brand-moss-soft: #dfe0c4;
+  --color-brand-rust: #a8461f;
+  --color-brand-rust-soft: #ecd6c5;
+  --color-brand-lavender: #c3b8e8;
+
   --font-sans: var(--font-inter);
 }
 
@@ -33,12 +35,8 @@ body {
 }
 
 ::selection {
-  background: var(--color-brand-sand);
+  background: var(--color-brand-butter);
   color: var(--color-brand-ink);
-}
-
-.font-serif-display {
-  font-family: var(--font-serif), ui-serif, Georgia, serif;
 }
 
 .text-balance {

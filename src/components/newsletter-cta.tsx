@@ -15,17 +15,17 @@ export default function NewsletterCta() {
 
   return (
     <section className="mx-auto max-w-6xl px-6 pb-24 sm:px-10">
-      <div className="bg-brand-ink px-8 py-14 text-center sm:px-16">
-        <h2 className="text-balance font-serif-display text-3xl font-semibold text-brand-ivory sm:text-4xl">
+      <div className="bg-brand-periwinkle px-8 py-14 text-center sm:px-16">
+        <h2 className="text-balance font-extralight leading-[1.02] tracking-tight text-brand-ivory text-4xl sm:text-5xl">
           Never miss a gathering
         </h2>
-        <p className="mx-auto mt-4 max-w-md text-balance text-brand-ivory/70">
+        <p className="mx-auto mt-4 max-w-md text-balance text-brand-ivory/80">
           Get new events delivered to your inbox weekly. Free to join, easy to
           leave, always worth opening.
         </p>
 
         {status === "submitted" ? (
-          <p className="mt-8 text-sm font-medium text-brand-sand">
+          <p className="mt-8 text-sm font-medium text-brand-butter">
             You&apos;re in! Keep an eye on your inbox for what&apos;s next.
           </p>
         ) : (
@@ -43,11 +43,11 @@ export default function NewsletterCta() {
               placeholder="you@example.com"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="w-full border border-brand-ivory/20 bg-transparent px-5 py-3 text-sm text-brand-ivory placeholder:text-brand-ivory/50 focus:outline-none focus:ring-1 focus:ring-brand-ivory"
+              className="w-full border border-brand-ivory/30 bg-transparent px-5 py-3 text-sm text-brand-ivory placeholder:text-brand-ivory/60 focus:outline-none focus:ring-1 focus:ring-brand-ivory"
             />
             <button
               type="submit"
-              className="inline-flex items-center justify-center gap-2 bg-brand-clay px-6 py-3 text-sm font-semibold uppercase tracking-wide text-brand-ivory transition-colors hover:bg-brand-clay-dark"
+              className="inline-flex items-center justify-center gap-2 bg-brand-butter px-6 py-3 text-sm font-bold uppercase tracking-wide text-brand-ink transition-colors hover:bg-brand-ivory"
             >
               Join
               <Send className="h-4 w-4" />

@@ -38,9 +38,9 @@ export default function EventsExplorer({ events }: { events: EventItem[] }) {
               key={c}
               type="button"
               onClick={() => setCategory(c)}
-              className={`border-b-2 pb-1 text-sm font-medium uppercase tracking-wide transition-colors ${
+              className={`border-b-2 pb-1 text-sm font-bold uppercase tracking-wide transition-colors ${
                 category === c
-                  ? "border-brand-clay text-brand-ink"
+                  ? "border-brand-rust text-brand-ink"
                   : "border-transparent text-brand-ink-soft hover:text-brand-ink"
               }`}
             >

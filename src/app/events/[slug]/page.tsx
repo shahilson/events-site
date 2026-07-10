@@ -67,14 +67,14 @@ export default async function EventDetailPage({
               {event.category}
             </span>
 
-            <h1 className="mt-4 text-balance font-serif-display text-3xl font-semibold text-brand-ink sm:text-4xl">
+            <h1 className="mt-4 text-balance font-extralight leading-[1.02] tracking-tight text-brand-ink text-4xl sm:text-5xl">
               {event.title}
             </h1>
 
             <p className="mt-3 text-lg leading-relaxed text-brand-ink-soft">{event.tagline}</p>
 
             <div className="mt-8 space-y-4 border-t border-brand-line pt-8">
-              <h2 className="font-serif-display text-xl font-semibold text-brand-ink">
+              <h2 className="text-xl font-semibold text-brand-ink">
                 About this event
               </h2>
               <p className="leading-relaxed text-brand-ink-soft">{event.description}</p>
@@ -125,7 +125,7 @@ export default async function EventDetailPage({
               </dl>
 
               <div className="border-t border-brand-line pt-6">
-                <h2 className="mb-4 font-serif-display text-lg font-semibold text-brand-ink">
+                <h2 className="mb-4 text-lg font-semibold text-brand-ink">
                   Get your ticket
                 </h2>
                 <BuyTicketsForm

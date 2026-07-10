@@ -31,7 +31,7 @@ export default function Testimonials() {
       <div className="mt-12 grid gap-10 border-t border-brand-line pt-10 md:grid-cols-3 md:gap-8">
         {TESTIMONIALS.map((t) => (
           <figure key={t.name} className="flex h-full flex-col">
-            <blockquote className="font-serif-display text-lg leading-relaxed text-brand-ink">
+            <blockquote className="text-xl font-light leading-relaxed tracking-tight text-brand-ink">
               &ldquo;{t.quote}&rdquo;
             </blockquote>
             <figcaption className="mt-6 flex items-center gap-3">
