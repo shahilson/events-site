@@ -1,6 +1,5 @@
 import { createClient, OAuthStrategy } from "@wix/sdk";
-import { wixEventsV2, rsvpV2 } from "@wix/events";
-import { redirects } from "@wix/redirects";
+import { wixEventsV2 } from "@wix/events";
 
 const clientId = process.env.WIX_CLIENT_ID;
 
@@ -12,7 +11,7 @@ export const isWixConfigured = Boolean(clientId);
 
 export const wixClient = clientId
   ? createClient({
-      modules: { events: wixEventsV2, rsvp: rsvpV2, redirects },
+      modules: { events: wixEventsV2 },
       auth: OAuthStrategy({ clientId }),
     })
   : null;

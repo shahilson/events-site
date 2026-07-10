@@ -1,10 +1,16 @@
 import type { wixEventsV2 } from "@wix/events";
 import { isWixConfigured, wixClient } from "@/lib/wix/client";
 import { mockEvents, getMockEventBySlug } from "@/lib/mock-events";
-import { EventCategory, EventItem, RsvpPayload, RsvpResult } from "@/lib/types";
+import { CheckoutPayload, CheckoutResult, EventCategory, EventItem } from "@/lib/types";
 import { placeholderImage } from "@/lib/images";
 
 type WixEvent = wixEventsV2.Event;
+
+interface TicketInfo {
+  id: string;
+  price: number;
+  currency: string;
+}
 
 const CATEGORY_FALLBACK: EventCategory = "Social";
 const ACCENTS: EventItem["accent"][] = ["rose", "plum", "gold"];
@@ -28,13 +34,52 @@ function resolveImage(mainImage: string | undefined, seed: string): string {
   return placeholderImage(seed);
 }
 
-// Wix Events doesn't have a built-in "category" concept the way this design
-// needs it, so live events are grouped from their category labels (set up in
-// the Wix dashboard) with a sensible fallback for uncategorized events.
-function mapWixEventToEventItem(event: WixEvent): EventItem {
+// The `URLS` fieldset is documented as an "Event page URL components" object,
+// but has also been observed as a single ready-made URL string depending on
+// the API surface — handle both so the checkout redirect never breaks.
+function resolveEventPageUrl(url: unknown): string {
+  if (typeof url === "string") return url;
+  if (url && typeof url === "object") {
+    const { base = "", path = "" } = url as { base?: string; path?: string };
+    return `${base}${path}`;
+  }
+  return "";
+}
+
+// Fetches the priced "General Admission"-style ticket definition for each
+// event in one request, keyed by eventId. An event with no ticket definition
+// yet (e.g. mid-setup in the Wix dashboard) is simply omitted from the map.
+async function fetchTicketInfoByEventId(eventIds: string[]): Promise<Map<string, TicketInfo>> {
+  const map = new Map<string, TicketInfo>();
+  if (!wixClient || eventIds.length === 0) return map;
+
+  const res = await wixClient.fetchWithAuth("https://www.wixapis.com/events/v3/ticket-definitions/query", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ query: { filter: { eventId: { $in: eventIds } } } }),
+  });
+  if (!res.ok) throw new Error(`Ticket definitions query failed: ${res.status}`);
+  const data = await res.json();
+
+  for (const def of data.ticketDefinitions ?? []) {
+    const fixed = def.pricingMethod?.fixedPrice;
+    const guest = def.pricingMethod?.guestPrice;
+    const price = fixed ?? guest;
+    if (!def.eventId || !price) continue;
+    map.set(def.eventId, {
+      id: def.id,
+      price: Number(price.value),
+      currency: price.currency,
+    });
+  }
+  return map;
+}
+
+function mapWixEventToEventItem(event: WixEvent, ticket: TicketInfo | undefined): EventItem | undefined {
+  if (!ticket) return undefined;
+
   const start = event.dateAndTimeSettings?.startDate ?? new Date().toISOString();
   const end = event.dateAndTimeSettings?.endDate ?? start;
-  const isWaitlistOnly = event.registration?.status === "OPEN_RSVP_WAITLIST_ONLY";
 
   return {
     id: event._id ?? event.slug ?? crypto.randomUUID(),
@@ -49,11 +94,13 @@ function mapWixEventToEventItem(event: WixEvent): EventItem {
     address: formatAddress(event.location?.address),
     isOnline: event.location?.type === "ONLINE",
     imageUrl: resolveImage(event.mainImage, event.slug ?? event._id ?? event.title ?? "event"),
-    capacity: undefined,
-    spotsLeft: isWaitlistOnly ? 0 : undefined,
     featured: false,
     host: "Community Team",
     accent: pickAccent(event._id ?? event.title ?? "event"),
+    ticketPrice: ticket.price,
+    ticketCurrency: ticket.currency,
+    ticketDefinitionId: ticket.id,
+    eventPageUrl: resolveEventPageUrl(event.eventPageUrl),
   };
 }
 
@@ -64,10 +111,16 @@ export async function getAllEvents(): Promise<EventItem[]> {
 
   try {
     const result = await wixClient.events
-      .queryEvents({ fields: ["DETAILS", "REGISTRATION", "DASHBOARD"] })
+      .queryEvents({ fields: ["DETAILS", "REGISTRATION", "URLS", "DASHBOARD"] })
       .ascending("dateAndTimeSettings.startDate")
       .find();
-    return result.items.map(mapWixEventToEventItem);
+
+    const eventIds = result.items.map((e) => e._id).filter((id): id is string => Boolean(id));
+    const ticketsByEvent = await fetchTicketInfoByEventId(eventIds);
+
+    return result.items
+      .map((event) => mapWixEventToEventItem(event, event._id ? ticketsByEvent.get(event._id) : undefined))
+      .filter((event): event is EventItem => Boolean(event));
   } catch (error) {
     console.error("Falling back to sample events — Wix Events query failed:", error);
     return mockEvents;
@@ -87,41 +140,51 @@ export async function getEventBySlug(slug: string): Promise<EventItem | undefine
 
   try {
     const result = await wixClient.events.getEventBySlug(slug, {
-      fields: ["DETAILS", "TEXTS", "REGISTRATION", "DASHBOARD"],
+      fields: ["DETAILS", "TEXTS", "REGISTRATION", "URLS", "DASHBOARD"],
     });
-    return result.event ? mapWixEventToEventItem(result.event) : undefined;
+    if (!result.event?._id) return undefined;
+
+    const ticketsByEvent = await fetchTicketInfoByEventId([result.event._id]);
+    return mapWixEventToEventItem(result.event, ticketsByEvent.get(result.event._id));
   } catch (error) {
     console.error("Falling back to sample event — Wix Events lookup failed:", error);
     return getMockEventBySlug(slug);
   }
 }
 
-export async function submitRsvp(payload: RsvpPayload): Promise<RsvpResult> {
+export async function createCheckout(payload: CheckoutPayload): Promise<CheckoutResult> {
   if (!isWixConfigured || !wixClient) {
     return {
       success: true,
-      message:
-        "You're on the list! (Demo mode — connect Wix Headless to send real RSVPs.)",
-      source: "mock",
+      message: "Demo mode — connect Wix Headless to process real ticket purchases.",
     };
   }
 
   try {
-    await wixClient.rsvp.createRsvp({
-      eventId: payload.eventId,
-      email: payload.email,
-      firstName: payload.firstName,
-      lastName: payload.lastName,
-      status: "YES",
-      additionalGuestDetails: { guestCount: payload.guestCount },
+    const reservationRes = await wixClient.fetchWithAuth("https://www.wixapis.com/events/v1/ticket-reservations", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        ticketReservation: {
+          tickets: [{ ticketDefinitionId: payload.ticketDefinitionId, quantity: payload.quantity }],
+        },
+      }),
     });
-    return { success: true, message: "You're on the list! Check your email for details.", source: "wix" };
+    if (!reservationRes.ok) throw new Error(`Reservation failed: ${reservationRes.status}`);
+    const reservation = await reservationRes.json();
+    const reservationId = reservation.ticketReservation?.id;
+    if (!reservationId) throw new Error("No reservation id returned");
+
+    return {
+      success: true,
+      message: "Redirecting you to checkout…",
+      checkoutUrl: `${payload.eventPageUrl}/ticket-form?reservationId=${reservationId}`,
+    };
   } catch (error) {
-    console.error("RSVP submission to Wix failed:", error);
+    console.error("Ticket checkout failed:", error);
     return {
       success: false,
-      message: "We couldn't submit your RSVP right now. Please try again shortly.",
-      source: "wix",
+      message: "We couldn't start checkout right now. Please try again shortly.",
     };
   }
 }

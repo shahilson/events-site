@@ -10,7 +10,6 @@
   },
   "dependencies": {
     "@wix/events": "^1.0.803",
-    "@wix/redirects": "^1.0.119",
     "@wix/sdk": "^1.21.13",
     "clsx": "^2.1.1",
     "lucide-react": "^1.24.0",

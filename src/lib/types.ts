@@ -18,24 +18,24 @@ export interface EventItem {
   address: string;
   isOnline: boolean;
   imageUrl: string;
-  capacity?: number;
-  spotsLeft?: number;
   featured: boolean;
   host: string;
   accent: "rose" | "plum" | "gold";
+  ticketPrice: number;
+  ticketCurrency: string;
+  ticketDefinitionId: string;
+  eventPageUrl: string;
 }
 
-export interface RsvpPayload {
+export interface CheckoutPayload {
   eventId: string;
-  firstName: string;
-  lastName: string;
-  email: string;
-  guestCount: number;
-  notes?: string;
+  ticketDefinitionId: string;
+  eventPageUrl: string;
+  quantity: number;
 }
 
-export interface RsvpResult {
+export interface CheckoutResult {
   success: boolean;
   message: string;
-  source: "wix" | "mock";
+  checkoutUrl?: string;
 }

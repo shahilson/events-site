@@ -25,3 +25,11 @@ export function formatEventTime(iso: string): string {
 export function formatEventTimeRange(startIso: string, endIso: string): string {
   return `${formatEventTime(startIso)} – ${formatEventTime(endIso)}`;
 }
+
+export function formatPrice(amount: number, currency: string): string {
+  return new Intl.NumberFormat("en-US", {
+    style: "currency",
+    currency,
+    minimumFractionDigits: amount % 1 === 0 ? 0 : 2,
+  }).format(amount);
+}

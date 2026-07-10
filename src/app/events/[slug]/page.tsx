@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowLeft, Calendar, Clock, MapPin, User } from "lucide-react";
-import RsvpForm from "@/components/rsvp-form";
+import BuyTicketsForm from "@/components/buy-tickets-form";
 import { ACCENT_STYLES } from "@/lib/accent";
 import { formatEventDateLong, formatEventTimeRange } from "@/lib/format";
 import { getAllEvents, getEventBySlug } from "@/lib/wix/events";
@@ -122,20 +122,20 @@ export default async function EventDetailPage({
                     )}
                   </div>
                 </div>
-                {typeof event.spotsLeft === "number" && (
-                  <div className="bg-brand-clay-soft px-4 py-3 text-center text-sm font-medium text-brand-clay-dark">
-                    {event.spotsLeft > 0
-                      ? `Only ${event.spotsLeft} spots left`
-                      : "Waitlist only"}
-                  </div>
-                )}
               </dl>
 
               <div className="border-t border-brand-line pt-6">
                 <h2 className="mb-4 font-serif-display text-lg font-semibold text-brand-ink">
-                  Reserve your spot
+                  Get your ticket
                 </h2>
-                <RsvpForm eventId={event.id} eventTitle={event.title} />
+                <BuyTicketsForm
+                  eventId={event.id}
+                  eventTitle={event.title}
+                  ticketDefinitionId={event.ticketDefinitionId}
+                  eventPageUrl={event.eventPageUrl}
+                  ticketPrice={event.ticketPrice}
+                  ticketCurrency={event.ticketCurrency}
+                />
               </div>
             </div>
           </aside>

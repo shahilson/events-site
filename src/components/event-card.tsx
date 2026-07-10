@@ -1,13 +1,12 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Calendar, MapPin, Users } from "lucide-react";
+import { Calendar, MapPin } from "lucide-react";
 import { EventItem } from "@/lib/types";
-import { formatEventDate, formatEventTime } from "@/lib/format";
+import { formatEventDate, formatEventTime, formatPrice } from "@/lib/format";
 import { ACCENT_STYLES } from "@/lib/accent";
 
 export default function EventCard({ event }: { event: EventItem }) {
   const styles = ACCENT_STYLES[event.accent];
-  const almostFull = typeof event.spotsLeft === "number" && event.spotsLeft <= 5;
 
   return (
     <Link href={`/events/${event.slug}`} className="group flex flex-col">
@@ -24,11 +23,9 @@ export default function EventCard({ event }: { event: EventItem }) {
         >
           {event.category}
         </span>
-        {almostFull && (
-          <span className="absolute right-4 top-4 bg-brand-ink px-3 py-1 text-xs font-medium uppercase tracking-wide text-brand-ivory">
-            Almost full
-          </span>
-        )}
+        <span className="absolute right-4 top-4 bg-brand-ink px-3 py-1 text-xs font-medium uppercase tracking-wide text-brand-ivory">
+          {formatPrice(event.ticketPrice, event.ticketCurrency)}
+        </span>
       </div>
 
       <div className="flex flex-1 flex-col gap-3 border-b border-brand-line pb-6 pt-5">
@@ -45,17 +42,9 @@ export default function EventCard({ event }: { event: EventItem }) {
           {event.tagline}
         </p>
 
-        <div className="mt-auto flex items-center justify-between pt-2 text-sm text-brand-ink-soft">
-          <span className="flex items-center gap-1.5">
-            <MapPin className="h-4 w-4" />
-            {event.isOnline ? "Online" : event.locationName}
-          </span>
-          {typeof event.spotsLeft === "number" && (
-            <span className="flex items-center gap-1.5">
-              <Users className="h-4 w-4" />
-              {event.spotsLeft} left
-            </span>
-          )}
+        <div className="mt-auto flex items-center gap-1.5 pt-2 text-sm text-brand-ink-soft">
+          <MapPin className="h-4 w-4" />
+          {event.isOnline ? "Online" : event.locationName}
         </div>
       </div>
     </Link>
